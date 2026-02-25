@@ -1,0 +1,3 @@
+011,cse,math
+022,it,biology
+033,ai,artificial intelligence

@@ -1,12 +1,16 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Course {
+
     private String courseId;
     private String courseName;
     private int credits;
+
+
+    private int maxStudents = 20;
+
+    List<Student> enlloredStudents = new ArrayList<>();
 
     public Course(String courseId , String courseName, int credits){
         this.courseId = courseId;
@@ -14,32 +18,33 @@ public class Course {
         this.credits = credits;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public String getCourseId() {
+        return courseId;
     }
 
     public String getCourseName() {
         return courseName;
     }
 
-    public void setCredits(int credits) {
-        this.credits = credits;
-    }
-
     public int getCredits() {
         return credits;
     }
 
-    public String getCourseId() {
-        return courseId;
+
+    public void enroll(Student student) {
+        if (enlloredStudents.size() >= maxStudents) {
+            throw new CourseFullException("Course is full");
+        }
+        enlloredStudents.add(student);
     }
 
-
-
-    List<Student> students = new ArrayList<>();
-    Map<Course, Double > courses = new HashMap<>();
-
-
-
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", credits=" + credits +
+                ", enrolledStudents=" + enlloredStudents.size() +
+                '}';
+    }
 }
