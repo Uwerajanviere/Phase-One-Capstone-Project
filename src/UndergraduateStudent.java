@@ -5,7 +5,7 @@ public class UndergraduateStudent extends Student {
     }
 
     @Override
-    public double calculateTuition(double flatRate){
+    public double calculateTuition(double flatRate) {
         return flatRate;
     }
 }

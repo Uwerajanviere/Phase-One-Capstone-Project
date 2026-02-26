@@ -5,15 +5,10 @@ public class Student extends Person {
 
     private double gpa;
 
-
     Map<Course, Double> coursesAndGrades = new HashMap<>();
 
-    public Student(String id, String department, double gpa){
+    public Student(String id, String department, double gpa) {
         super(id, department);
-        this.gpa = gpa;
-    }
-
-    public void setGpa(double gpa) {
         this.gpa = gpa;
     }
 
@@ -21,18 +16,20 @@ public class Student extends Person {
         return gpa;
     }
 
-    public double calculateTuition(double flatRate){
-        return flatRate;
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
     }
 
+    public double calculateTuition(double rate) {
+        return rate;
+    }
 
     public void addCourse(Course course) {
         if (coursesAndGrades.containsKey(course)) {
-            throw new StudentAlreadyEnrolledException(" this Student is already enrolled in this course");
+            throw new RuntimeException("Student already enrolled in this course");
         }
         coursesAndGrades.put(course, 0.0);
     }
-
 
     public void setGrade(Course course, double grade) {
         coursesAndGrades.put(course, grade);
