@@ -1,21 +1,17 @@
 public class GraduateStudent extends Student {
-    private double researchFees;
 
-    public GraduateStudent(String id, String department, double gpa, double researchFees) {
+    private double researchFee;
+
+    public GraduateStudent(String id, String department, double gpa, double researchFee) {
         super(id, department, gpa);
-        this.researchFees = researchFees;
-    }
-
-    public void setResearchFees(double researchFees) {
-        this.researchFees = researchFees;
-    }
-
-    public double getResearchFees() {
-        return researchFees;
+        this.researchFee = researchFee;
     }
 
     @Override
-    public double calculateTuition(double flatRate){
-        return flatRate + researchFees;
+    public double calculateTuition(double perCreditRate) {
+        return perCreditRate + researchFee;
+    }
+    public double getResearchFee() {
+        return researchFee;
     }
 }

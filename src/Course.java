@@ -6,13 +6,11 @@ public class Course {
     private String courseId;
     private String courseName;
     private int credits;
-
-
     private int maxStudents = 20;
 
-    List<Student> enlloredStudents = new ArrayList<>();
+    List<Student> enrolledStudents = new ArrayList<>();
 
-    public Course(String courseId , String courseName, int credits){
+    public Course(String courseId, String courseName, int credits) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.credits = credits;
@@ -30,12 +28,18 @@ public class Course {
         return credits;
     }
 
-
     public void enroll(Student student) {
-        if (enlloredStudents.size() >= maxStudents) {
-            throw new CourseFullException("Course is full");
+        if (enrolledStudents.size() >= maxStudents) {
+            throw new RuntimeException("Course is full");
         }
-        enlloredStudents.add(student);
+        if (enrolledStudents.contains(student)) {
+            throw new RuntimeException("Student already enrolled in this course");
+        }
+        enrolledStudents.add(student);
+    }
+
+    public int getEnrollmentCount() {
+        return enrolledStudents.size();
     }
 
     @Override
@@ -44,7 +48,7 @@ public class Course {
                 "courseId='" + courseId + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", credits=" + credits +
-                ", enrolledStudents=" + enlloredStudents.size() +
+                ", enrolledStudents=" + enrolledStudents.size() +
                 '}';
     }
 }
